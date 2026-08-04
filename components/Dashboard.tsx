@@ -23,6 +23,7 @@ import { COST_CATEGORIES, type Concert } from "@/lib/types";
 import { EmptyState } from "./EmptyState";
 import { MoneyMap } from "./MoneyMap";
 import { ValueVerdicts } from "./ValueVerdicts";
+import { YearInConcertsCard } from "./YearInConcertsCard";
 
 const CHART_COLORS = [
   "#c026d3",
@@ -132,6 +133,8 @@ export function Dashboard({ concerts }: DashboardProps) {
       <ValueVerdicts concerts={items} />
 
       <MoneyMap concerts={items} />
+
+      <YearInConcertsCard concerts={concerts} />
 
       <div className="grid gap-4 lg:grid-cols-2">
         <ChartCard title="Spending by cost category">
