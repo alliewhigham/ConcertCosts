@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: synthwave --default, cyberpunk, night, dracula, luxury, dark, light, cupcake, valentine, aqua;
+}
+
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+}
+
+.login-hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 20%, color-mix(in oklab, var(--color-primary) 35%, transparent), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 15%, color-mix(in oklab, var(--color-secondary) 30%, transparent), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, color-mix(in oklab, var(--color-accent) 25%, transparent), transparent 50%),
+    var(--color-base-300);
+}
