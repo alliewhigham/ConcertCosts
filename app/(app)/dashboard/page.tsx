@@ -22,7 +22,7 @@ export default async function DashboardPage() {
       <div>
         <h2 className="text-2xl font-bold">Dashboard</h2>
         <p className="text-sm opacity-70">
-          Quick stats and charts from the concerts you have logged.
+          Quick stats, value grades, and charts from the concerts you have logged.
         </p>
       </div>
       <Dashboard concerts={(data ?? []) as Concert[]} />

@@ -40,16 +40,64 @@ export function formatNumber(value: number, digits = 1): string {
   }).format(value);
 }
 
+export type ValueGrade = "A" | "B" | "C" | "D" | "F";
+
+export type ValueScore = {
+  grade: ValueGrade;
+  label: string;
+  verdict: string;
+  funPointsPer100: number;
+};
+
+/**
+ * Letter grade from Fun Points per $100.
+ * Higher = more fun for each dollar spent.
+ */
+export function getValueScore(funPointsPer100: number | null): ValueScore | null {
+  if (funPointsPer100 == null) return null;
+
+  const score = funPointsPer100;
+  let grade: ValueGrade;
+  let label: string;
+  let verdict: string;
+
+  if (score >= 8) {
+    grade = "A";
+    label = "Excellent value";
+    verdict = "Strong value for the fun you had.";
+  } else if (score >= 5) {
+    grade = "B";
+    label = "Good value";
+    verdict = "A solid balance of cost and fun.";
+  } else if (score >= 3) {
+    grade = "C";
+    label = "Fair value";
+    verdict = "A decent experience, but not a bargain.";
+  } else if (score >= 1.5) {
+    grade = "D";
+    label = "Low value";
+    verdict = "The fun was limited relative to what you spent.";
+  } else {
+    grade = "F";
+    label = "Poor value";
+    verdict = "High cost for the fun level of this show.";
+  }
+
+  return { grade, label, verdict, funPointsPer100: score };
+}
+
 export function withMetrics(concert: Concert) {
   const totalCost = getTotalCost(concert);
   const costPerHour = getCostPerHour(totalCost, concert.hours_at_event);
   const funPointsPer100 = getFunPointsPer100(concert.fun_rating, totalCost);
+  const valueScore = getValueScore(funPointsPer100);
 
   return {
     ...concert,
     totalCost,
     costPerHour,
     funPointsPer100,
+    valueScore,
   };
 }
 
